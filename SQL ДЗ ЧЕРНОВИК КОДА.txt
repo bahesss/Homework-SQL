@@ -1,0 +1,59 @@
+""ЖАНР""
+CREATE TABLE IF NOT EXISTS Genre (
+	id genre PRIMARY KEY,
+	genre_name VARCHAR(80) UNIQUE NOT NULL,
+);
+
+""ЖАНР ИСПОЛНИТЕЛЬ""
+CREATE TABLE IF NOT EXISTS Genre_Performer (
+	id genre_performer PRIMARY KEY,
+	id_genre VARCHAR(80) references Genre(id genre),
+	id_performer VARCHAR(80) references Performer(id performer)
+);
+
+
+""ИСПОЛНИТЕЛЬ""
+CREATE TABLE IF NOT EXISTS Performer(
+	id performer PRIMARY KEY,
+	performer_name VARCHAR(80) UNIQUE NOT NULL
+);
+
+""ИСПОЛНИТЕЛЬ АЛЬБОМ""
+CREATE TABLE IF NOT EXISTS Performer_Album(
+	id performer_album PRIMARY KEY,
+	id_performer VARCHAR(80) references Performer(id performer),
+	id_album VARCHAR(80) references Album(id album)
+);
+
+
+""АЛЬБОМ""
+CREATE TABLE IF NOT EXISTS Album(
+	id album PRIMARY KEY,
+	album_name(80) UNIQUE NOT NULL,
+	year_of_release INTEGER NOT NULL
+);
+
+
+""ТРЕК""
+CREATE TABLE IF NOT EXISTS Track(
+	id track PRIMARY KEY,
+	track_name(80) UNIQUE NOT NULL,
+	duration VARCHAR(40) NOT NULL,
+	id_album VARCHAR(80) references Album(id album)
+);
+
+
+""ТРЕК СБОРНИК""
+CREATE TABLE IF NOT EXISTS Track_Compilation(
+	id track_compilation PRIMARY KEY,
+	id_track VARCHAR(80) references Track(id track),
+	id_compilation VARCHAR(80) references Compilation(id compilation)
+);
+
+
+""СБОРНИК""
+CREATE TABLE IF NOT EXISTS Compilation(
+	id compilation PRIMARY KEY,
+	compilation_name(80) UNIQUE NOT NULL,
+	year_of_release INTEGER NOT NULL
+);
