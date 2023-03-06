@@ -1,0 +1,46 @@
+CREATE TABLE genre (
+	id SERIAL PRIMARY KEY,
+	genre_name VARCHAR(80) UNIQUE NOT NULL
+);
+
+CREATE TABLE genre_performer (
+	id SERIAL PRIMARY KEY,
+	id SERIAL genre VARCHAR(80) references genre(id SERIAL),
+	id SERIAL performer VARCHAR(80) references performer(id SERIAL)
+);
+
+CREATE TABLE performer (
+	id SERIAL PRIMARY KEY,
+	performer_name VARCHAR(80) UNIQUE NOT NULL
+);
+
+CREATE TABLE performer_album (
+	id SERIAL PRIMARY KEY,
+	id SERIAL performer VARCHAR(80) references performer(id SERIAL),
+	id SERIAL album VARCHAR(80) references album(id SERIAL)
+);
+
+CREATE TABLE album (
+	id SERIAL PRIMARY KEY,
+	album_name(80) UNIQUE NOT NULL,
+	year_of_release INTEGER NOT NULL
+);
+
+CREATE TABLE track (
+	id SERIAL PRIMARY KEY,
+	track_name(80) UNIQUE NOT NULL,
+	duration VARCHAR(40) NOT NULL,
+	id SERIAL album VARCHAR(80) references album(id SERIAL)
+);
+
+CREATE TABLE track_compilation (
+	id tSERIAL PRIMARY KEY,
+	id SERIAL track VARCHAR(80) references track(id SERIAL),
+	id SERIAL compilation VARCHAR(80) references compilation(id SERIAL)
+);
+
+CREATE TABLE compilation (
+	id SERIAL PRIMARY KEY,
+	compilation_name VARCHAR(80) UNIQUE NOT NULL,
+	year_of_release INTEGER NOT NULL
+);
