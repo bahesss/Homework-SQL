@@ -29,12 +29,12 @@ CREATE TABLE album (
 CREATE TABLE track (
 	id SERIAL PRIMARY KEY,
 	track_name(80) UNIQUE NOT NULL,
-	duration VARCHAR(40) NOT NULL,
+	duration INTEGER(40) NOT NULL,
 	id SERIAL album VARCHAR(80) references album(id SERIAL)
 );
 
 CREATE TABLE track_compilation (
-	id tSERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	id SERIAL track VARCHAR(80) references track(id SERIAL),
 	id SERIAL compilation VARCHAR(80) references compilation(id SERIAL)
 );
